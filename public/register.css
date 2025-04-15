@@ -4,8 +4,6 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
     box-sizing: border-box;
 }
 
@@ -14,92 +12,57 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 60px 20px; /* Adds top and bottom space */
-    overflow: auto;
+    padding: 60px 15px;
 }
 
 /* Form Box Styling */
 .form-box {
-    width: 100%;
-    max-width: 700px;
     background: #ffffff;
     padding: 40px 30px;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-    margin: 60px auto;
-    box-sizing: border-box;
+    max-width: 720px;
+    margin: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Input Group Styling */
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
+/* Input group styles */
+.input-group .form-control {
+    border-right: none;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 12px 40px 12px 12px;
-    font-size: 16px;
-    line-height: 1.5;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: block;
+.input-group-text {
+    background-color: #e9ecef;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }
 
-.input-group i {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-    pointer-events: none;
-    font-size: 18px;
-}
-
-/* Button Styling */
+/* Buttons */
 .btn {
-    width: 100%;
-    max-width: 350px;
-    display: block;
-    margin: 20px auto;
     padding: 12px;
-    background-color: #007bff;
-    border: none;
-    color: white;
     font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    border-radius: 6px;
+    margin-top: 10px;
 }
 
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive Design */
+/* Responsive Layouts */
 @media screen and (max-width: 768px) {
     .form-box {
-        padding: 25px 20px;
-        margin: 40px auto;
+        padding: 30px 20px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .form-box {
-        padding: 20px 15px;
+        padding: 25px 15px;
     }
 
-    .input-group input {
-        padding: 12px 35px 12px 10px;
+    .btn {
+        font-size: 14px;
     }
 
-    .input-group i {
-        right: 8px;
-    }
-
-    p {
-        font-size: 12px;
-        margin-bottom: -5px;
+    .input-group-text i {
+        font-size: 16px;
     }
 }
