@@ -3,175 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add posts</title>
-    <link rel="stylesheet" href="/style.css">
-
-</head>
-
-
-<!-- <div class="navbar">
-  <%- include("include/navbar") %>
-</div> -->
-
-<form action="/upload" method="post" enctype="multipart/form-data">
+    <title>Add Posts</title>
   
-  <div class="tabs">
-    <div class="tab active" data-tab="tab1" class="btn btn-secondary ">Create a post</div>
-    <!-- <div class="tab" data-tab="tab2">Image</div>
-    <div class="tab" data-tab="tab3">video</div> -->
-  </div>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: #acb1b7;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
 
-<div class="tab-content">
-  <!----------------------this is first div-->
-    <div class="content active" id="tab1">
-      <div class="firstdiv" >
-        <form action="/upload/text" method="post" >
+      .tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        gap: 10px;
+      }
+
+      .tab {
+        padding: 12px 18px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        background: #323232;
+        color: #333;
+        border-radius: 10px 10px 0 0;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .tab.active {
+        background: #323232;
+        color: #fff;
+        box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .tab-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 700px;
+      }
+
+      .content {
+        display: none;
+      }
+
+      .content.active {
+        display: block;
+      }
+
+      .uploadcontainer {
+        padding: 20px;
+      }
+
+      .postag {
+        text-align: center;
+        font-size: 20px;
+        color: #444;
+        margin-bottom: 15px;
+      }
+
+      .uploadbox {
+        background: #fafafa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      label {
+        font-weight: 600;
+        color: #333;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 10px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s ease;
+        resize: none;
+      }
+
+      input:focus, textarea:focus {
+        border-color: #091265;
+        outline: none;
+      }
+
+      #postbtn {
+        width: 100%;
+        padding: 12px;
+        background: #323232;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      #postbtn:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .tags {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 5px;
+      }
+
+      .hashtags:hover {
+        background-color: #000957;
+        color: white;
+        text-align: center;
+        border-radius: 3px;
+      }
+
+      img, video {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 600px) {
+        .tab {
+          font-size: 14px;
+          padding: 10px;
+        }
+        .tab-content {
+          width: 90%;
+        }
+      }
+      @media (max-width:480px){
+        .tab-content{
+          width: 100%;
+        }
+        .content{
+          width: 100%;
+          padding: 0px;
+        }
+      }
+    </style>
+</head>
+<body>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="tabs">
+      <div class="tab active" data-tab="tab1">Create a post</div>
+    </div>
+
+    <div class="tab-content">
+      <div class="content active" id="tab1">
+        <div class="firstdiv">
           <div class="uploadcontainer">
             <h3 class="postag">Post your questions and problems</h3>
             <div class="uploadbox">
-      
-                <div class="row mb-3">
-                  <label for="Title" class="col-sm-2 col-form-label">Title</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Title" name="title">
-                  </div>
-                </div>
-                <br>
-                <div class="row mb-3">
-                  <label for="img" class="col-sm-2 col-form-label">Image(optinal) </label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="img" name="postimg" accept="image/*">
-                  </div>
-                </div> 
-                
-                <br>
-                <div class="row mb-3">
-                  <label for="img" class="col-sm-2 col-form-label">video(optinal) </label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="img" name="videopost" accept="video/*">
-                  </div>
-                </div>
-                
-                <div class="row mb-3">
-                  <label for="bio" class="col-sm-2 col-form-label">Description</label>
-                  <div class="col-sm-10">
-                  <textarea type="text" class="form-control" id="Description" placeholder="Write description about problem" name="description" style="height: 60px;"></textarea>
-                  </div>
-                </div>
-                <div class="tags-container">
-                  <input type="text" id="tagInput" placeholder="Add a hashtag..." name="hashtags">
-                  <div class="tags" id="tagList">
-                      <!-- Tags will be dynamically added here -->
-                  </div>
+              <div class="row mb-3">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="Title" name="title">
               </div>
-              
-                <br>
-                <button type="submit" class="btn btn-secondary " id="postbtn">Post</button>
+              <br>
+              <div class="row mb-3">
+                <label for="postimg">Image (optional)</label>
+                <input type="file" class="form-control" id="postimg" name="postimg" accept="image/*">
+              </div>
+              <br>
+              <div class="row mb-3">
+                <label for="videopost">Video (optional)</label>
+                <input type="file" class="form-control" id="videopost" name="videopost" accept="video/*">
+              </div>
+              <div class="row mb-3">
+                <label for="Description">Description</label>
+                <textarea class="form-control" id="Description" name="description" placeholder="Write description about problem" style="height: 60px;"></textarea>
+              </div>
+              <div class="tags-container">
+                <input type="text" id="tagInput" placeholder="Add a hashtag..." name="hashtags">
+                <div class="tags" id="tagList"></div>
+              </div>
+              <br>
+              <button type="submit" class="btn btn-secondary" id="postbtn">Post</button>
             </div>
           </div>
-      
-      <!-- </form> -->
-
-
-
+        </div>
       </div>
     </div>
-    <!-- ----------------------------this is second div
-    <div class="content" id="tab2">
-      <div class="second">
+  </form>
 
-          <form action="/upload/image" method="post" enctype="multipart/form-data">  
-          <div class="uploadcontainer">
-            <h3 class="postag">Post your questions through images</h3>
-            <div class="uploadbox">
-      
-                <div class="row mb-3">
-                  <label for="Title" class="col-sm-2 col-form-label">Title</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Title" name="title">
-                  </div>
-                </div>
-      <br>
-                <div class="row mb-3">
-                  <label for="img" class="col-sm-2 col-form-label">Image </label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="img" name="postimg" accept="image/*">
-                  </div>
-                </div>
-                <br>
-                <div class="row mb-3">
-                  <label for="bio" class="col-sm-2 col-form-label">Description</label>
-                  <div class="col-sm-10">
-                  <textarea type="text" class="form-control" id="Description" placeholder="Write description about problem" name="description" style="height: 60px;"></textarea>
-                  </div>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success" id="postbtn2">Post</button>
-            </div>
-          </div>
-      
-       </form> 
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
 
-      </div>
-    </div> -->
-
-    <!----------------this is third div------------->
-    <!-- <div class="content" id="tab3">
-      <div class="third">
-        <form action="/upload/videos" method="post" enctype="multipart/form-data">
-          <div class="uploadcontainer">
-            <h3 class="postag">Post your video</h3>
-            <div class="uploadbox">
-      
-                <div class="row mb-3">
-                  <label for="Title" class="col-sm-2 col-form-label">Title</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Title" name="title">
-                  </div>
-                </div>
-                <br>
-                <div class="row mb-3">
-                  <label for="img" class="col-sm-2 col-form-label">video </label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="img" name="videopost" accept="video/*">
-                  </div>
-                </div>
-                <br>
-                <div class="row mb-3">
-                  <label for="bio" class="col-sm-2 col-form-label">Description</label>
-                  <div class="col-sm-10">
-                  <textarea type="text" class="form-control" id="Description" placeholder="Write description about problem" name="description" style="height: 60px;"></textarea>
-                  </div>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success" id="postbtn3">Post</button>
-            </div>
-          </div>
-      
-      </form>
-        
-      </div>
-    </div> -->
-</div>
-
-</form>
-
-
-<script>
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.content');
-
-  tabs.forEach(tab => {
+    tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-          const target = document.getElementById(tab.dataset.tab);
+        const target = document.getElementById(tab.dataset.tab);
 
-          tabs.forEach(t => t.classList.remove('active'));
-          contents.forEach(c => c.classList.remove('active'));
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
 
-          tab.classList.add('active');
-          target.classList.add('active');
+        tab.classList.add('active');
+        target.classList.add('active');
       });
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
