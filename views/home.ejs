@@ -272,17 +272,20 @@
     display: flex;
     flex-direction: column;
     width: auto;
+    padding: 0;
+    width: 100%;
+
   }
   .head {
     padding-left: 79px;
   }
     .postcontainer{
         
-     width: 371px;
+      width: 404px;
       height: 600px;
       overflow: auto;
       margin-top: 27px;
-      margin-left: 12px;
+      margin-left: 2px;
       
   }
   .current-user-card {
@@ -432,7 +435,7 @@
                     <div class="post-user">
                       <% if (post.user) { %>
                         <a href="/profile/<%= post.user._id %>" class="user-link">
-                          <img class="user-profile" src="/upload/<%= post.user.profileimg || 'default.jpg' %>" alt="User Profile">
+                          <img class="user-profile" src="/upload/<%= post.user.profileimg || 'defaultimg.jpeg' %>" alt="User Profile">
                           <p class="username"><%= post.user.username %></p>
                         </a>
                       <% } else { %>
