@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= event.title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title><%= event.title %></title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1><%= event.title %></h1>
+  
+    <% if (event.postimg) { %>
+      <img src="/upload/<%= event.postimg %>" alt="Event Image" />
+    <% } else if (event.videopost) { %>
+      <video controls src="/upload/<%= event.videopost %>"></video>
+    <% } %>
+  
+    <p><%= event.description %></p>
+  </body>
+  </html>
+  
+</body>
+</html>
